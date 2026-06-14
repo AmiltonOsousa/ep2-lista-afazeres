@@ -7,6 +7,7 @@ class Acao
   ENVIAR = "enviar"
   PAGAR = "pagar"
   BUSCAR = "buscar"
+  REUNIAO = "reunião"
 
   TODAS = [
     AGENDAR,
@@ -16,6 +17,7 @@ class Acao
     ESTUDAR,
     ENVIAR,
     PAGAR,
-    BUSCAR
+    BUSCAR,
+    REUNIAO
   ]
 end
