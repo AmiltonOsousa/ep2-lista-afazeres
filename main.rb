@@ -14,9 +14,7 @@ urls = texto.scan(
 puts "\n=== Resultado ==="
 
 puts "Tags:"
-tags.each do |tag|
-  puts "- #{tag}"
-end
+tags.each { |tag| puts "- #{tag}" }
 
 puts "\nEmails:"
 emails.each { |email| puts "- #{email}" }
