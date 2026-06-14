@@ -1,6 +1,19 @@
 puts "Digite um afazer:"
 texto = gets.chomp
 
+ACOES = %w[
+agendar
+marcar
+ligar
+comprar
+estudar
+enviar
+pagar
+buscar
+reunião
+reuniao
+]
+
 tags = texto.scan(/#[a-zA-ZÀ-ÿ0-9_]+/)
 
 emails = texto.scan(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/)
@@ -17,19 +30,35 @@ datas += texto.scan(/\b\d{1,2}\/\d{1,2}(?:\/\d{4})?\b/)
 datas += texto.scan(/\b(?:hoje|amanhã|depois de amanhã)\b/i)
 datas += texto.scan(/\b\d{1,2}(?:\s+de)?\s+(?:janeiro|fevereiro|março|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro)(?:\s+de\s+\d{4})?\b/i)
 
+acoes = texto.scan(/\b(#{ACOES.join('|')})\b/i).flatten
+
+pessoas = []
+
+texto.scan(
+  /com\s+([A-ZÁÀÂÃÉÊÍÓÔÕÚÇ][a-záàâãéêíóôõúç]+(?:\s+e\s+[A-ZÁÀÂÃÉÊÍÓÔÕÚÇ][a-záàâãéêíóôõúç]+)*)/
+) do |nome|
+  pessoas << nome[0]
+end
+
 puts "\n=== Resultado ==="
+
+puts "Pessoas:"
+pessoas.each { |p| puts "- #{p}" }
+
+puts "Ações:"
+acoes.each { |a| puts "- #{a}" }
 
 puts "Datas:"
 datas.each { |d| puts "- #{d}" }
 
-puts "\nHorários:"
+puts "Horários:"
 horarios.each { |h| puts "- #{h}" }
 
-puts "\nTags:"
+puts "Tags:"
 tags.each { |tag| puts "- #{tag}" }
 
-puts "\nEmails:"
+puts "Emails:"
 emails.each { |email| puts "- #{email}" }
 
-puts "\nURLs:"
+puts "URLs:"
 urls.each { |url| puts "- #{url}" }
